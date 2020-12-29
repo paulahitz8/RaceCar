@@ -97,6 +97,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
+	//App->camera->CameraFollow(vehicle, 5, 15, 1.f);
 	vehicle->SetPos(0, 12, 10);
 	
 	return true;
@@ -132,9 +133,25 @@ update_status ModulePlayer::Update(float dt)
 			turn -= TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		acceleration = -(MAX_ACCELERATION);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
 		brake = BRAKE_POWER;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+	{
+		if (lives > 0)
+		{
+			--lives;
+			vehicle->SetPos(0, 0, -100);
+			vehicle->Brake(BRAKE_POWER);
+			vehicle->SetTransform(&transform);
+		}
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
@@ -147,8 +164,24 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
+	if (lives == 0)
+	{
+		//cosas de score
+		//move to title screen
+		//play music
+
+		
+	}
+
 	return UPDATE_CONTINUE;
 }
 
+vec3 ModulePlayer::GetPos()
+{
+	vec3 pos;
+	pos.x = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().x();
+	pos.y = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().y();
+	pos.z = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().z();
 
-
+	return pos;
+}

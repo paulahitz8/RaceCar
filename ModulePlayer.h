@@ -21,8 +21,15 @@ public:
 
 public:
 
+	//void Restart();
+
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
 	float brake;
+
+	uint lives = 5;
+	mat4x4 transform;
+
+	vec3 GetPos();
 };
