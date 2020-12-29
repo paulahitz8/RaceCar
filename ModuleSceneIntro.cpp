@@ -47,11 +47,11 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
-	p.color = Green;
+	p.color = White;
 	p.Render();
 
 	wall->Render();
-	ground->Render();
+	//ground->Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -59,4 +59,10 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
+
+void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, float trackDistance, Color trackColor);
+void CreateCurve(vec3 curvePos, int curveLength, float curveAngle, Color curveColor);
+//void CreateTrackLine(vec3 LineTrackPos, float LineTrackLength, Color LineTrackColor, float LineTrackAngle);
+void CreateDoors(vec3 doorPos, float doorAngle, Color doorColor);
+void CreateRamp(vec3 rampPos, float rampLength, float rampHeight, float rampAngle);
 

@@ -98,7 +98,7 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	//App->camera->CameraFollow(vehicle, 5, 15, 1.f);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(0, 1, 10);
 	
 	return true;
 }
@@ -114,6 +114,14 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	//timer to lose game
+	int timerlose = timer.Read() / 1000;
+
+	if (timerlose > 62)
+	{
+		timer.Stop();
+	}
+
 	turn = acceleration = brake = 0.0f;
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -160,8 +168,10 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Render();
 
+	int time = timer.Read() / 1000;
+
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%.1f Km/h    |   Time: %ds    |    Score: aun no hay jeje", vehicle->GetKmh(), 61-time);
 	App->window->SetTitle(title);
 
 	if (lives == 0)
@@ -169,8 +179,6 @@ update_status ModulePlayer::Update(float dt)
 		//cosas de score
 		//move to title screen
 		//play music
-
-		
 	}
 
 	return UPDATE_CONTINUE;

@@ -27,6 +27,7 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+	Timer timer;
 
 	uint lives = 5;
 	mat4x4 transform;

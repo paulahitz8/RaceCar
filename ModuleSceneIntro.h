@@ -20,6 +20,13 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+	void Timer();
+
+	void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, float trackDistance, Color trackColor);
+	void CreateCurve(vec3 curvePos, int curveLength, float curveAngle, Color curveColor);
+	//void CreateTrackLine(vec3 LineTrackPos, float LineTrackLength, Color LineTrackColor, float LineTrackAngle);
+	void CreateDoors(vec3 doorPos, float doorAngle, Color doorColor);
+	void CreateRamp(vec3 rampPos, float rampLength, float rampHeight, float rampAngle);
 
 public:
 	/*
@@ -35,6 +42,13 @@ public:
 
 	Cube* ground;
 	PhysBody3D* groundA;
+
+
+	p2DynArray<Primitive*> arrayTrack;
+
+
+
+	// ------------
 
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
