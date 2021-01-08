@@ -1,2 +1,4 @@
-﻿  ModulePlayer.cpp
+﻿  ModuleSceneIntro.cpp
+D:\Github\RaceCarHandout\ModuleSceneIntro.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
+D:\Github\RaceCarHandout\ModuleSceneIntro.cpp(79,14): warning C4101: 'shapeCol': unreferenced local variable
   3D Physics.vcxproj -> D:\Github\RaceCarHandout\Debug\3D Physics - class5.exe

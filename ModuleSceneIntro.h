@@ -9,6 +9,12 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct trackArray
+{
+	p2DynArray<Cube> cubeArray;
+	p2DynArray<PhysBody3D*> physArray;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -22,11 +28,10 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	void Timer();
 
-	void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, float trackDistance, Color trackColor);
-	void CreateCurve(vec3 curvePos, int curveLength, float curveAngle, Color curveColor);
-	//void CreateTrackLine(vec3 LineTrackPos, float LineTrackLength, Color LineTrackColor, float LineTrackAngle);
-	void CreateDoors(vec3 doorPos, float doorAngle, Color doorColor);
-	void CreateRamp(vec3 rampPos, float rampLength, float rampHeight, float rampAngle);
+	void CreateTrack(vec3 trackPos, float trackLength, Color trackColor, float trackAngle, float trackDistance); 
+	//void CreateCurve(vec3 curvePos, int curveLength, float curveAngle, Color curveColor);
+	//void CreateDoors(vec3 doorPos, float doorAngle, Color doorColor);
+	//void CreateRamp(vec3 rampPos, float rampLength, float rampHeight, float rampAngle);
 
 public:
 	/*
@@ -43,10 +48,8 @@ public:
 	Cube* ground;
 	PhysBody3D* groundA;
 
-
+	trackArray trackArray;
 	p2DynArray<Primitive*> arrayTrack;
-
-
 
 	// ------------
 
