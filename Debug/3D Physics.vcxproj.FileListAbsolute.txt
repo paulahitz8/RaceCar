@@ -2,3 +2,5 @@ C:\Users\paula\Desktop\RaceCarHandout\Fisica\Debug\3D Physics - class5.exe
 C:\Users\paula\Desktop\RaceCarHandout\Fisica\Debug\3D Physics - class5.pdb
 D:\Github\RaceCarHandout\Debug\3D Physics - class5.exe
 D:\Github\RaceCarHandout\Debug\3D Physics - class5.pdb
+D:\Github\RaceCar\Debug\3D Physics - class5.exe
+D:\Github\RaceCar\Debug\3D Physics - class5.pdb
