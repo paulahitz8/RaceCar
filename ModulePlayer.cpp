@@ -109,6 +109,9 @@ bool ModulePlayer::Start()
 	accel = -1;
 	accelFx = App->audio->LoadFx("Assets/Audio/Fx/engine.wav");
 	brakeFx = App->audio->LoadFx("Assets/Audio/Fx/brake.wav");
+	honkFx = App->audio->LoadFx("Assets/Audio/Fx/honk.wav");
+	
+	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
 
 	return true;
 }
@@ -130,20 +133,19 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 	time = timer.Read() / 1000;
 
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+	{
+		App->audio->PlayFx(honkFx);
+	}
 
 	if (App->scene_intro->start)
 	{
 		if (!isWon && !isLose)
 		{
+			
 			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 			{
 				acceleration = MAX_ACCELERATION;
-				//Mix_Volume(-1, 2);
-				//App->audio->PlayFx(accelFx, -1);
-			}
-			else
-			{
-				//App->audio->StopFx(accel);
 			}
 
 			if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -190,7 +192,11 @@ update_status ModulePlayer::Update(float dt)
 			{
 				isLose = true;
 			}
-
+			if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+			{
+				vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
+				vehicle->vehicle->getRigidBody()->setWorldTransform(checkpointTransf);
+			}
 		}
 		else
 		{
@@ -204,16 +210,31 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Render();
 
-	if (time > 8)
+	if (!isWon && !isLose)
+	{
+		if (time > 8)
+		{
+			char title[80];
+			sprintf_s(title, "%.1f Km/h    Time: %ds   |   GOOOO ", vehicle->GetKmh(), time - 8);
+			App->window->SetTitle(title);
+		}
+		else
+		{
+			char title[80];
+			sprintf_s(title, "%d Km/h    Time: %ds   |   Try to reach the finish line as fast as possible!", 0, 0);
+			App->window->SetTitle(title);
+		}
+	}
+	if (isWon)
 	{
 		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds    ", vehicle->GetKmh(), time - 8);
+		sprintf_s(title, "%.1f Km/h    |   Time: %ds   |   Congratulations, you won!!!", vehicle->GetKmh(), time - 8);
 		App->window->SetTitle(title);
 	}
-	else
+	if (isLose)
 	{
 		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds    ", vehicle->GetKmh(), 0);
+		sprintf_s(title, "%.1f Km/h    |   Time: %ds   |   Oh no... you lost... :(", vehicle->GetKmh(), time - 8);
 		App->window->SetTitle(title);
 	}
 
@@ -234,4 +255,10 @@ vec3 ModulePlayer::GetPos()
 	pos.z = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().z();
 
 	return pos;
+}
+
+
+void ModulePlayer::SetCheckpointPosition()
+{
+	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
 }

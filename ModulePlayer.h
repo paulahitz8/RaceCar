@@ -18,6 +18,7 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	void SetCheckpointPosition();
 
 public:
 
@@ -35,11 +36,13 @@ public:
 	int accel;
 	int brakeFx;
 	int accelFx;
+	int honkFx;
 
 	bool isWon;
 	bool isLose;
 
 	int time = 0;
+	btTransform checkpointTransf;
 
 	vec3 GetPos();
 };

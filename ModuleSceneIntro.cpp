@@ -46,7 +46,7 @@ bool ModuleSceneIntro::Start()
 
 	musicFx = App->audio->LoadFx("Assets/Audio/Music/game_music.ogg");
 	victoryFx = App->audio->LoadFx("Assets/Audio/Music/victory.ogg");
-	loseFx = App->audio->LoadFx("");
+	loseFx = App->audio->LoadFx("Assets/Audio/Fx/lose.ogg");
 	clapFx = App->audio->LoadFx("Assets/Audio/Fx/clap.ogg");
 
 	finishLineFx = App->audio->LoadFx("Assets/Fx/finish.wav");
@@ -74,6 +74,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.color = White;
 	p.Render();
 
+
 	if (!start)
 	{
 		if (startMusic)
@@ -84,7 +85,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 		if (timerFx > 200 && timerFx < 202)
 		{
-			App->audio->PlayFx(oneFx, 0);
+			App->audio->PlayFx(threeFx, 0);
 		}
 		if (timerFx > 280 && timerFx < 282)
 		{
@@ -92,7 +93,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 		if (timerFx > 360 && timerFx < 362)
 		{
-			App->audio->PlayFx(threeFx, 0);
+			App->audio->PlayFx(oneFx, 0);
 		}
 		if (timerFx > 440 && timerFx < 442)
 		{
@@ -102,7 +103,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		timerFx++;
 	}
 
-	if (start && !App->player->isWon)
+	if (start)
 	{
 		if (gameMusic)
 		{
@@ -118,9 +119,18 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	if (App->player->isLose)
 	{
-		App->audio->PlayMusic("Assets/Music/lose_music.ogg", 0.0f);
-
+		if (timerMusic < 2) App->audio->StopFx(-1);
+		if (finishMusic)
+		{
+			if (timerMusic > 10)
+			{
+				App->audio->PlayFx(loseFx, 0);
+				finishMusic = false;
+			}
+		}
+		timerMusic++;
 	}
+
 	if (App->player->isWon)
 	{
 		if(timerMusic < 2) App->audio->StopFx(-1);
@@ -134,7 +144,6 @@ update_status ModuleSceneIntro::Update(float dt)
 			}
 		}
 		timerMusic++;
-
 	}
 
 	wall->Render();
