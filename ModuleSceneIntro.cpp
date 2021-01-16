@@ -3,6 +3,9 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "glut/glut.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -34,6 +37,25 @@ bool ModuleSceneIntro::Start()
 
 	CreateTrack({ 0,0,10 }, 1000, Red, 0.0f, 20);
 
+	startMusic = true;
+	gameMusic = true;
+	finishMusic = true;
+	start = false;
+	timerFx = 0;
+	timerMusic = 0;
+
+	musicFx = App->audio->LoadFx("Assets/Audio/Music/game_music.ogg");
+	victoryFx = App->audio->LoadFx("Assets/Audio/Music/victory.ogg");
+	loseFx = App->audio->LoadFx("");
+	clapFx = App->audio->LoadFx("Assets/Audio/Fx/clap.ogg");
+
+	finishLineFx = App->audio->LoadFx("Assets/Fx/finish.wav");
+	startFx = App->audio->LoadFx("Assets/Audio/Music/start.wav");
+	oneFx = App->audio->LoadFx("Assets/Audio/Fx/one.wav");
+	twoFx = App->audio->LoadFx("Assets/Audio/Fx/two.wav");
+	threeFx = App->audio->LoadFx("Assets/Audio/Fx/three.wav");
+	goFx = App->audio->LoadFx("Assets/Audio/Fx/go.wav");
+
 	return ret;
 }
 
@@ -51,6 +73,69 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.color = White;
 	p.Render();
+
+	if (!start)
+	{
+		if (startMusic)
+		{
+			Mix_Volume(-1, 10);
+			App->audio->PlayFx(startFx, 0);
+			startMusic = false;
+		}
+		if (timerFx > 200 && timerFx < 202)
+		{
+			App->audio->PlayFx(oneFx, 0);
+		}
+		if (timerFx > 280 && timerFx < 282)
+		{
+			App->audio->PlayFx(twoFx, 0);
+		}
+		if (timerFx > 360 && timerFx < 362)
+		{
+			App->audio->PlayFx(threeFx, 0);
+		}
+		if (timerFx > 440 && timerFx < 442)
+		{
+			App->audio->PlayFx(goFx, 0);
+			timerFx = 0;
+		}
+		timerFx++;
+	}
+
+	if (start && !App->player->isWon)
+	{
+		if (gameMusic)
+		{
+			App->audio->PlayFx(musicFx, 0);
+			gameMusic = false;
+		}
+	}
+	
+	if (App->player->time > 8)
+	{
+		start = true;
+	}
+
+	if (App->player->isLose)
+	{
+		App->audio->PlayMusic("Assets/Music/lose_music.ogg", 0.0f);
+
+	}
+	if (App->player->isWon)
+	{
+		if(timerMusic < 2) App->audio->StopFx(-1);
+		if (finishMusic)
+		{
+			if (timerMusic > 10)
+			{
+				App->audio->PlayFx(clapFx, 0);
+				App->audio->PlayFx(victoryFx, 0);
+				finishMusic = false;
+			}
+		}
+		timerMusic++;
+
+	}
 
 	wall->Render();
 	//ground->Render();

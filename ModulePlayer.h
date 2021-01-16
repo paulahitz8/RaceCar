@@ -29,8 +29,17 @@ public:
 	float brake;
 	Timer timer;
 
-	uint lives = 5;
+	int lives = 5;
 	mat4x4 transform;
+
+	int accel;
+	int brakeFx;
+	int accelFx;
+
+	bool isWon;
+	bool isLose;
+
+	int time = 0;
 
 	vec3 GetPos();
 };

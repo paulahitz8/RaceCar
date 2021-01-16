@@ -21,14 +21,18 @@ public:
 
 	// Load a WAV in memory
 	unsigned int LoadFx(const char* path);
+	bool UnloadFx(uint index);
+	bool SetFxVolume(uint index);
 
 	// Play a previously loaded WAV
-	bool PlayFx(unsigned int fx, int repeat = 0);
+	int PlayFx(unsigned int fx, int repeat = 0);
+	int StopFx(int channel);
 
 private:
 
 	Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
+	int volumeFx;
 };
 
 #endif // __ModuleAudio_H__
