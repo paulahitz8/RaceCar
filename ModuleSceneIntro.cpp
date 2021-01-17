@@ -189,6 +189,8 @@ bool ModuleSceneIntro::Start()
 	CreateCurve({ 0,20,-10 }, 3, 180, 360, 50, White);
 	CreateTrack({ 100,20,5 }, 35, 0.0f, White, 12.0f);
 
+	CreateCheckpoint({ 0,20,20 }, true, PhysBody3D::Tag::CHECKPOINT);
+
 	startMusic = true;
 	gameMusic = true;
 	finishMusic = true;
@@ -207,6 +209,7 @@ bool ModuleSceneIntro::Start()
 	twoFx = App->audio->LoadFx("Assets/Audio/Fx/two.wav");
 	threeFx = App->audio->LoadFx("Assets/Audio/Fx/three.wav");
 	goFx = App->audio->LoadFx("Assets/Audio/Fx/go.wav");
+	checkpointFx = App->audio->LoadFx("Assets/Audio/Fx/checkpoint.wav");
 
 	return ret;
 }
@@ -305,7 +308,21 @@ update_status ModuleSceneIntro::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2) {}
+void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
+{
+	if (body1->GetTag() == PhysBody3D::Tag::PLAYER)
+	{
+		if (body2->GetTag() == PhysBody3D::Tag::CHECKPOINT)
+		{
+			CheckpointPassed(body2);
+			body2->SetActive(false);
+			App->player->SetCheckpointPosition();
+			App->audio->PlayFx(checkpointFx);
+		}
+	}
+	
+
+}
 
 void ModuleSceneIntro::CreateCurve(vec3 curvePos, float curveLength, float curveInitialAngle, float curveFinalAngle, float radius, Color curveColor)
 {
@@ -460,5 +477,51 @@ void ModuleSceneIntro::CreateTrack(vec3 trackPos, float trackLength, float track
 	/*	shape.SetPos(trackPos.x + 3, trackPos.y + 3, trackPos.z - trackDist);
 		trackArray.cubeArray.PushBack(shape);
 		trackArray.physArray.PushBack(App->physics->AddBody(shape, 0.0f));*/
+	}
+}
+
+void ModuleSceneIntro::CreateCheckpoint(vec3 checkpointPos, bool rotate, PhysBody3D::Tag type)
+{
+	Cube checkpointObj;
+	Cube greenCube;
+	vec3 size = {};
+
+	if (rotate)
+	{
+		size = {12, 1, 1};
+	}
+	else
+	{
+		size = { 1, 1, 12 };
+	}
+
+	checkpointObj.size = size;
+	greenCube.size = size;
+	checkpointObj.SetPos(checkpointPos.x, checkpointPos.y + 1, checkpointPos.z);
+	checkpointCube.PushBack(checkpointObj);
+	PhysBody3D* sensor = App->physics->AddBody(checkpointObj, 0);
+	sensor->SetAsSensor(true);
+	sensor->SetTag(type);
+	checkpointPhys.PushBack(sensor);
+
+	if (type == PhysBody3D::Tag::CHECKPOINT)
+		greenCube.color.Set(0, 255, 0);
+	else
+		greenCube.color.Set(0, 255, 255);
+
+	greenCube.SetPos(checkpointPos.x, checkpointPos.y + 4, checkpointPos.z);
+	trackArray.cubeArray.PushBack(greenCube);
+	trackArray.physArray.PushBack(App->physics->AddBody(greenCube, 0.0f));
+}
+
+void ModuleSceneIntro::CheckpointPassed(PhysBody3D* checkpoint_body)
+{
+	for (uint i = 0; i < checkpointPhys.Count(); i++)
+	{
+		if (checkpointPhys[i] == checkpoint_body)
+		{
+			checkpointCube[i].active = false;
+			break;
+		}
 	}
 }

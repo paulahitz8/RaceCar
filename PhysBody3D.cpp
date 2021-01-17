@@ -27,6 +27,39 @@ void PhysBody3D::GetTransform(float* matrix) const
 	}
 }
 
+void PhysBody3D::SetAsSensor(bool is_sensor)
+{
+	if (this->is_sensor != is_sensor)
+	{
+		this->is_sensor = is_sensor;
+
+		if (is_sensor == true)
+		{
+			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		}
+		else
+		{
+			body->setCollisionFlags(body->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		}
+	}
+}
+
+void PhysBody3D::SetTag(Tag currentTag)
+{
+	this->tag = currentTag;
+}
+
+PhysBody3D::Tag PhysBody3D::GetTag()
+{
+	return tag;
+}
+
+void PhysBody3D::SetActive(bool isActive)
+{
+	active = isActive;
+	onCollision = isActive;
+}
+
 // ---------------------------------------------------------
 void PhysBody3D::SetTransform(const float* matrix) const
 {

@@ -4,10 +4,10 @@
 #include "Globals.h"
 #include "Primitive.h"
 #include "glut/glut.h"
+#include "PhysBody3D.h"
 
 #define MAX_SNAKE 2
 
-struct PhysBody3D;
 struct PhysMotor3D;
 
 struct trackArray
@@ -33,6 +33,8 @@ public:
 	void CreateRamp(vec3 rampPos, float rampLength, float rampAngle, float rampOrientation, Color rampColor);
 	void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, Color trackColor, float trackWidth);
 	void CreateWall(vec3 wallPos, float wallLength, float wallAngle, Color wallColor);
+	void CreateCheckpoint(vec3 checkpointPos, bool rotate, PhysBody3D::Tag type);
+	void CheckpointPassed(PhysBody3D* checkpoint_body);
 
 public:
 	
@@ -50,15 +52,18 @@ public:
 	int twoFx;
 	int threeFx;
 	int goFx;
+	int checkpointFx;
 	int timerFx;
 	int timerMusic;
 	
+	p2DynArray <Cube> checkpointCube;
+	p2DynArray <PhysBody3D*> checkpointPhys;
 
-	Cube* wall;
+	/*Cube* wall;
 	PhysBody3D* wallA;
 
 	Cube* ground;
-	PhysBody3D* groundA;
+	PhysBody3D* groundA;*/
 
 	trackArray trackArray;
 	p2DynArray<Primitive*> arrayTrack;
