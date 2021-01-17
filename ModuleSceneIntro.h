@@ -35,13 +35,6 @@ public:
 	void CreateWall(vec3 wallPos, float wallLength, float wallAngle, Color wallColor);
 
 public:
-	/*
-	PhysBody3D* pb_snake[MAX_SNAKE];
-	Sphere s_snake[MAX_SNAKE];
-
-	PhysBody3D* pb_snake2[MAX_SNAKE];
-	Sphere s_snake2[MAX_SNAKE];
-	*/
 	
 	int musicFx;
 	int victoryFx;
