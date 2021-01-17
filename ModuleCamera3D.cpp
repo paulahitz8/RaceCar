@@ -113,7 +113,7 @@ update_status ModuleCamera3D::Update(float dt)
 		float vehiclex = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 		float vehiclez = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
 
-		LookAt(vec3(vehiclex, 0.5f, vehiclez));
+		LookAt(vec3(vehiclex, 20.5f, vehiclez));
 	}
 	
 	// Recalculate matrix -------------

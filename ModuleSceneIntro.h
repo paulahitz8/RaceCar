@@ -28,10 +28,10 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	void Timer();
 
-	void CreateTrack(vec3 trackPos, float trackLength, Color trackColor, float trackAngle, float trackDistance); 
-	//void CreateCurve(vec3 curvePos, int curveLength, float curveAngle, Color curveColor);
-	//void CreateDoors(vec3 doorPos, float doorAngle, Color doorColor);
-	//void CreateRamp(vec3 rampPos, float rampLength, float rampHeight, float rampAngle);
+	void CreateCurve(vec3 curvePos, float curveLength, float curveInitialAngle, float curveFinalAngle, float radius, Color curveColor);
+	void CreateRamp(vec3 rampPos, float rampLength, float rampAngle, float rampOrientation, Color rampColor);
+	void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, Color trackColor, float trackWidth);
+	void CreateWall(vec3 wallPos, float wallLength, float wallAngle, Color wallColor);
 
 public:
 	/*
