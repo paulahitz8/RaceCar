@@ -3,6 +3,9 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "glut/glut.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -19,18 +22,6 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
-
-	////a wall
-	//wall = new Cube(10, 10, 10);
-	//wall->SetPos(10, 5, -10);
-	//wall->color = Red;
-	//wallA = App->physics->AddBody(*wall, 0);
-
-	////ground
-	//ground = new Cube(100, 1, 100);
-	//ground->SetPos(0, 0, -1);
-	//ground->color = Green;
-	//groundA = App->physics->AddBody(*ground, 0);
 
 	CreateTrack({ 0,20,10 }, 50, 0.0f, White, 12.0f);
 	CreateRamp({ 0,21,45 }, 20, 8, 0.0f, White);
@@ -198,6 +189,25 @@ bool ModuleSceneIntro::Start()
 	CreateCurve({ 0,20,-10 }, 3, 180, 360, 50, White);
 	CreateTrack({ 100,20,5 }, 35, 0.0f, White, 12.0f);
 
+	startMusic = true;
+	gameMusic = true;
+	finishMusic = true;
+	start = false;
+	timerFx = 0;
+	timerMusic = 0;
+
+	musicFx = App->audio->LoadFx("Assets/Audio/Music/game_music.ogg");
+	victoryFx = App->audio->LoadFx("Assets/Audio/Music/victory.ogg");
+	loseFx = App->audio->LoadFx("Assets/Audio/Fx/lose.ogg");
+	clapFx = App->audio->LoadFx("Assets/Audio/Fx/clap.ogg");
+
+	finishLineFx = App->audio->LoadFx("Assets/Fx/finish.wav");
+	startFx = App->audio->LoadFx("Assets/Audio/Music/start.wav");
+	oneFx = App->audio->LoadFx("Assets/Audio/Fx/one.wav");
+	twoFx = App->audio->LoadFx("Assets/Audio/Fx/two.wav");
+	threeFx = App->audio->LoadFx("Assets/Audio/Fx/three.wav");
+	goFx = App->audio->LoadFx("Assets/Audio/Fx/go.wav");
+
 	return ret;
 }
 
@@ -216,8 +226,77 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.color = White;
 	p.Render();
 
-	//wall->Render();
-	//ground->Render();
+	if (!start)
+	{
+		if (startMusic)
+		{
+			Mix_Volume(-1, 10);
+			App->audio->PlayFx(startFx, 0);
+			startMusic = false;
+		}
+		if (timerFx > 200 && timerFx < 202)
+		{
+			App->audio->PlayFx(threeFx, 0);
+		}
+		if (timerFx > 280 && timerFx < 282)
+		{
+			App->audio->PlayFx(twoFx, 0);
+		}
+		if (timerFx > 360 && timerFx < 362)
+		{
+			App->audio->PlayFx(oneFx, 0);
+		}
+		if (timerFx > 440 && timerFx < 442)
+		{
+			App->audio->PlayFx(goFx, 0);
+			timerFx = 0;
+		}
+		timerFx++;
+	}
+
+	if (start)
+	{
+		if (gameMusic)
+		{
+			App->audio->PlayFx(musicFx, 0);
+			gameMusic = false;
+		}
+	}
+	
+	if (App->player->time > 8)
+	{
+		start = true;
+	}
+
+	if (App->player->isLose)
+	{
+		if (timerMusic < 2) App->audio->StopFx(-1);
+		if (finishMusic)
+		{
+			if (timerMusic > 10)
+			{
+				App->audio->PlayFx(loseFx, 0);
+				finishMusic = false;
+			}
+		}
+		timerMusic++;
+	}
+
+	if (App->player->isWon)
+	{
+		if(timerMusic < 2) App->audio->StopFx(-1);
+		if (finishMusic)
+		{
+			if (timerMusic > 10)
+			{
+				App->audio->PlayFx(clapFx, 0);
+				App->audio->PlayFx(victoryFx, 0);
+				finishMusic = false;
+			}
+		}
+		timerMusic++;
+	}
+
 	for (int i = 0; i < trackArray.cubeArray.Count(); i++)
 	{
 		trackArray.cubeArray[i].Render();

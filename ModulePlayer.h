@@ -18,6 +18,7 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	void SetCheckpointPosition();
 
 public:
 
@@ -29,8 +30,19 @@ public:
 	float brake;
 	Timer timer;
 
-	uint lives = 5;
+	int lives = 5;
 	mat4x4 transform;
+
+	int accel;
+	int brakeFx;
+	int accelFx;
+	int honkFx;
+
+	bool isWon;
+	bool isLose;
+
+	int time = 0;
+	btTransform checkpointTransf;
 
 	vec3 GetPos();
 };

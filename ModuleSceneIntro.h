@@ -3,6 +3,7 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "glut/glut.h"
 
 #define MAX_SNAKE 2
 
@@ -41,6 +42,24 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+	
+	int musicFx;
+	int victoryFx;
+	int clapFx;
+	int loseFx;
+	bool start;
+	bool startMusic;
+	bool gameMusic;
+	bool finishMusic;
+	int finishLineFx;
+	int startFx;
+	int oneFx;
+	int twoFx;
+	int threeFx;
+	int goFx;
+	int timerFx;
+	int timerMusic;
+	
 
 	Cube* wall;
 	PhysBody3D* wallA;
