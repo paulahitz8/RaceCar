@@ -15,8 +15,8 @@ of beating the highscore!
 
 ##### Debug functionality:
 * **F1** - Debug view
-* **F2** - Respawn at last checkpoint
-* **F7** - Free Camera
+* **ENTER** - Respawn at last checkpoint
+* **F2** - Free Camera
 * **N** - Automatic win
 * **M** - Automatic lose
 
