@@ -59,11 +59,8 @@ public:
 	p2DynArray <Cube> checkpointCube;
 	p2DynArray <PhysBody3D*> checkpointPhys;
 
-	/*Cube* wall;
-	PhysBody3D* wallA;
-
-	Cube* ground;
-	PhysBody3D* groundA;*/
+	Cube checkTest;
+	PhysBody3D* testp;
 
 	trackArray trackArray;
 	p2DynArray<Primitive*> arrayTrack;

@@ -189,7 +189,12 @@ bool ModuleSceneIntro::Start()
 	CreateCurve({ 0,20,-10 }, 3, 180, 360, 50, White);
 	CreateTrack({ 100,20,5 }, 35, 0.0f, White, 12.0f);
 
-	CreateCheckpoint({ 0,20,20 }, true, PhysBody3D::Tag::CHECKPOINT);
+	checkTest.size = { 12, 12, 1 };
+	testp = App->physics->AddBody(checkTest, 0);
+	testp->SetPos(0, 21, 20);
+	testp->GetTransform(&checkTest.transform);
+	testp->SetAsSensor(true);
+	testp->collision_listeners.add(this);
 
 	startMusic = true;
 	gameMusic = true;
@@ -310,9 +315,9 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	if (body1->GetTag() == PhysBody3D::Tag::PLAYER)
+	if (body2 == (PhysBody3D*)App->player->vehicle)
 	{
-		if (body2->GetTag() == PhysBody3D::Tag::CHECKPOINT)
+		if (body1 == testp)
 		{
 			CheckpointPassed(body2);
 			body2->SetActive(false);
@@ -320,8 +325,6 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 			App->audio->PlayFx(checkpointFx);
 		}
 	}
-	
-
 }
 
 void ModuleSceneIntro::CreateCurve(vec3 curvePos, float curveLength, float curveInitialAngle, float curveFinalAngle, float radius, Color curveColor)

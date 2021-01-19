@@ -147,21 +147,19 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetTag(PhysBody3D::Tag::PLAYER);
 	vehicle->SetPos(0, 21, 10);
-	vehicle->collision_listeners.add(App->scene_intro);
+	vehicle->collision_listeners.add(this);
 
 	isWon = false;
 	isLose = false;
 	lives = 5;
-
 	time = 0;
-	
 	accel = -1;
+
 	accelFx = App->audio->LoadFx("Assets/Audio/Fx/engine.wav");
 	brakeFx = App->audio->LoadFx("Assets/Audio/Fx/brake.wav");
 	honkFx = App->audio->LoadFx("Assets/Audio/Fx/honk.wav");
 	
 	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
-
 
 	return true;
 }
@@ -212,11 +210,6 @@ update_status ModulePlayer::Update(float dt)
 			if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 			{
 				acceleration = -(MAX_ACCELERATION);
-				if (vehicle->GetKmh() > 0)
-				{
-					//break fx no va
-					//App->audio->PlayFx(brakeFx, 0);
-				}
 			}
 
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
@@ -287,7 +280,6 @@ update_status ModulePlayer::Update(float dt)
 		App->window->SetTitle(title);
 	}
 
-
 	if (lives == 0)
 	{
 		isLose = true;
@@ -305,7 +297,6 @@ vec3 ModulePlayer::GetPos()
 
 	return pos;
 }
-
 
 void ModulePlayer::SetCheckpointPosition()
 {
