@@ -189,7 +189,6 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (!isWon && !isLose)
 		{
-			
 			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 			{
 				acceleration = MAX_ACCELERATION;
@@ -217,14 +216,6 @@ update_status ModulePlayer::Update(float dt)
 				brake = BRAKE_POWER;
 			}
 
-			if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
-			{
-				--lives;
-				vehicle->SetPos(0, 0, -100);
-				vehicle->Brake(BRAKE_POWER);
-				vehicle->SetTransform(&transform);
-			}
-
 			if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 			{
 				isWon = true;
@@ -234,8 +225,10 @@ update_status ModulePlayer::Update(float dt)
 			{
 				isLose = true;
 			}
-			if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+
+			if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 			{
+				--lives;
 				vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
 				vehicle->vehicle->getRigidBody()->setWorldTransform(checkpointTransf);
 			}
@@ -257,26 +250,28 @@ update_status ModulePlayer::Update(float dt)
 		if (time > 8)
 		{
 			char title[80];
-			sprintf_s(title, "%.1f Km/h    Time: %ds   |   GOOOO ", vehicle->GetKmh(), time - 8);
+			sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   GOOOO!!! ", vehicle->GetKmh(), time - 8, lives);
 			App->window->SetTitle(title);
 		}
 		else
 		{
 			char title[80];
-			sprintf_s(title, "%d Km/h    Time: %ds   |   Try to reach the finish line as fast as possible!", 0, 0);
+			sprintf_s(title, "%d Km/h    |   Time: %ds    |   Lives = %d    |   Try to win ASAP!", 0, 0, lives);
 			App->window->SetTitle(title);
 		}
 	}
 	if (isWon)
 	{
 		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds   |   Congratulations, you won!!!", vehicle->GetKmh(), time - 8);
+		sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   Congrats, you won! :D", vehicle->GetKmh(), time - 8, lives);
 		App->window->SetTitle(title);
 	}
 	if (isLose)
 	{
+		vehicle->SetPos(0, 21, 10);
+
 		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds   |   Oh no... you lost... :(", vehicle->GetKmh(), time - 8);
+		sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   Oh no... you lost... :(", vehicle->GetKmh(), time - 8, 0);
 		App->window->SetTitle(title);
 	}
 

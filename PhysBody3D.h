@@ -5,6 +5,7 @@
 
 class btRigidBody;
 class Module;
+class btVector3;
 
 // =================================================
 struct PhysBody3D

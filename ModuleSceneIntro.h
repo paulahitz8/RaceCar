@@ -59,8 +59,23 @@ public:
 	p2DynArray <Cube> checkpointCube;
 	p2DynArray <PhysBody3D*> checkpointPhys;
 
-	Cube checkTest;
-	PhysBody3D* testp;
+	Cube check1;
+	PhysBody3D* check1p;
+	Cube check2;
+	PhysBody3D* check2p;
+	Cube check3;
+	PhysBody3D* check3p;
+	Cube check4;
+	PhysBody3D* check4p;
+	bool check1Passed;
+	bool check2Passed;
+	bool check3Passed;
+	bool check4Passed;
+
+	Cube death;
+	PhysBody3D* deathP;
+
+	int checkpointCount;
 
 	trackArray trackArray;
 	p2DynArray<Primitive*> arrayTrack;

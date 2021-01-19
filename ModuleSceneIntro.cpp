@@ -2,7 +2,9 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
+#include "ModulePlayer.h"
 #include "PhysBody3D.h"
+#include "PhysVehicle3D.h"
 #include "glut/glut.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -23,179 +25,213 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	CreateTrack({ 0,20,10 }, 50, 0.0f, White, 12.0f);
-	CreateRamp({ 0,21,45 }, 20, 8, 0.0f, White);
-	CreateRamp({ 0,21,74 }, 20, -8, 0.0f, White);
-	CreateTrack({ 0,20,99 }, 40, 0.0f, White, 12.0f);
-	CreateCurve({ 0,20,120 }, 3, 0, 180, 50, White);
-	CreateRamp({ -100,23,100 }, 41, -8, 0.0f, White);
-	CreateCurve({ -200,26,82 }, 3, 180, 360, 50, White);
-	CreateRamp({ -200,29,102 }, 40, 8, 0.0f, White);
-	CreateCurve({ -150,24,182 }, 3, 90, 180, 50, White);
-	CreateTrack({ -87,24,182 }, 130, 1.0f, White, 12.0f);
-	CreateRamp({ 20,30,182 }, 90, -8, 1.0f, White);
-	CreateRamp({ 120,65,182 }, 90, 90, 1.0f, White);
-	CreateTrack({ 96,20,103 }, 164, 0.0f, White, 48.0f);
-	CreateWall({ 120,23,103 }, 164, 90, White);
-	CreateWall({ 72,23,103 }, 164, 90, White);
-	CreateWall({ 96,23,185 }, 48, 0, White);
-	CreateWall({ 113,23,21 }, 14, 0, White);
-	CreateWall({ 83,23,21 }, 22, 0, White);
+	CreateTrack({ 0,20,10 }, 50, 0.0f, Purple, 12.0f);
+	CreateRamp({ 0,21,45 }, 20, 8, 0.0f, Purple);
+	CreateRamp({ 0,21,74 }, 20, -8, 0.0f, Purple);
+	CreateTrack({ 0,20,99 }, 40, 0.0f, Purple, 12.0f);
+	CreateCurve({ 0,20,120 }, 3, 0, 180, 50, Purple);
+	CreateRamp({ -100,23,100 }, 41, -8, 0.0f, Purple);
+	CreateCurve({ -200,26,82 }, 3, 180, 360, 50, Purple);
+	CreateRamp({ -200,29,102 }, 40, 8, 0.0f, Purple);
+	CreateCurve({ -150,24,182 }, 3, 90, 180, 50, Purple);
+	CreateTrack({ -87,24,182 }, 130, 1.0f, Purple, 12.0f);
+	CreateRamp({ 20,30,182 }, 90, -8, 1.0f, Purple);
+	CreateRamp({ 120,65,182 }, 90, 90, 1.0f, Purple);
+	CreateTrack({ 96,20,103 }, 164, 0.0f, Purple, 48.0f);
+	CreateWall({ 120,23,103 }, 164, 90, Purple);
+	CreateWall({ 72,23,103 }, 164, 90, Purple);
+	CreateWall({ 96,23,185 }, 48, 0, Purple);
+	CreateWall({ 113,23,21 }, 14, 0, Purple);
+	CreateWall({ 83,23,21 }, 22, 0, Purple);
 
-	CreateWall({ 100,23,160 }, 40, 0, White);
-	CreateWall({ 92,23,155 }, 40, 0, White);
-	CreateWall({ 100,23,150 }, 40, 0, White);
+	CreateWall({ 100,23,160 }, 40, 0, Purple);
+	CreateWall({ 92,23,150 }, 40, 0, Purple);
+	//CreateWall({ 100,23,150 }, 40, 0, Purple);
 
-	CreateWall({ 112,23,140 }, 5, 0, White);
-	CreateWall({ 110,23,137 }, 5, 90, White);
-	CreateWall({ 113,23,135 }, 5, 0, White);
-	CreateWall({ 115,23,138 }, 5, 90, White);
+	CreateWall({ 112,23,140 }, 5, 0, Purple);
+	CreateWall({ 110,23,137 }, 5, 90, Purple);
+	CreateWall({ 113,23,135 }, 5, 0, Purple);
+	CreateWall({ 115,23,138 }, 5, 90, Purple);
 
-	CreateWall({ 116,23,100 }, 5, 0, White);
-	CreateWall({ 114,23,97 }, 5, 90, White);
-	CreateWall({ 117,23,95 }, 5, 0, White);
-	CreateWall({ 119,23,98 }, 5, 90, White);
+	CreateWall({ 116,23,100 }, 5, 0, Purple);
+	CreateWall({ 114,23,97 }, 5, 90, Purple);
+	CreateWall({ 117,23,95 }, 5, 0, Purple);
+	CreateWall({ 119,23,98 }, 5, 90, Purple);
 
-	CreateWall({ 92,23,140 }, 5, 0, White);
-	CreateWall({ 90,23,137 }, 5, 90, White);
-	CreateWall({ 93,23,135 }, 5, 0, White);
-	CreateWall({ 95,23,138 }, 5, 90, White);
+	CreateWall({ 92,23,140 }, 5, 0, Purple);
+	CreateWall({ 90,23,137 }, 5, 90, Purple);
+	CreateWall({ 93,23,135 }, 5, 0, Purple);
+	CreateWall({ 95,23,138 }, 5, 90, Purple);
 
-	CreateWall({ 102,23,130 }, 5, 0, White);
-	CreateWall({ 100,23,127 }, 5, 90, White);
-	CreateWall({ 103,23,125 }, 5, 0, White);
-	CreateWall({ 105,23,128 }, 5, 90, White);
+	CreateWall({ 102,23,130 }, 5, 0, Purple);
+	CreateWall({ 100,23,127 }, 5, 90, Purple);
+	CreateWall({ 103,23,125 }, 5, 0, Purple);
+	CreateWall({ 105,23,128 }, 5, 90, Purple);
 
-	CreateWall({ 97,23,120 }, 5, 0, White);
-	CreateWall({ 95,23,117 }, 5, 90, White);
-	CreateWall({ 98,23,115 }, 5, 0, White);
-	CreateWall({ 100,23,118 }, 5, 90, White);
+	CreateWall({ 97,23,120 }, 5, 0, Purple);
+	CreateWall({ 95,23,117 }, 5, 90, Purple);
+	CreateWall({ 98,23,115 }, 5, 0, Purple);
+	CreateWall({ 100,23,118 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,150 }, 5, 0, White);
-	CreateWall({ 85,23,147 }, 5, 90, White);
-	CreateWall({ 88,23,145 }, 5, 0, White);
-	CreateWall({ 90,23,148 }, 5, 90, White);
+	CreateWall({ 87,23,150 }, 5, 0, Purple);
+	CreateWall({ 85,23,147 }, 5, 90, Purple);
+	CreateWall({ 88,23,145 }, 5, 0, Purple);
+	CreateWall({ 90,23,148 }, 5, 90, Purple);
 
-	CreateWall({ 77,23,125 }, 5, 0, White);
-	CreateWall({ 75,23,122 }, 5, 90, White);
-	CreateWall({ 78,23,120 }, 5, 0, White);
-	CreateWall({ 80,23,123 }, 5, 90, White);
+	CreateWall({ 77,23,125 }, 5, 0, Purple);
+	CreateWall({ 75,23,122 }, 5, 90, Purple);
+	CreateWall({ 78,23,120 }, 5, 0, Purple);
+	CreateWall({ 80,23,123 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,130 }, 5, 0, White);
-	CreateWall({ 85,23,127 }, 5, 90, White);
-	CreateWall({ 88,23,125 }, 5, 0, White);
-	CreateWall({ 90,23,128 }, 5, 90, White);
+	CreateWall({ 87,23,130 }, 5, 0, Purple);
+	CreateWall({ 85,23,127 }, 5, 90, Purple);
+	CreateWall({ 88,23,125 }, 5, 0, Purple);
+	CreateWall({ 90,23,128 }, 5, 90, Purple);
 
-	CreateWall({ 107,23,115 }, 5, 0, White);
-	CreateWall({ 105,23,112 }, 5, 90, White);
-	CreateWall({ 108,23,110 }, 5, 0, White);
-	CreateWall({ 110,23,113 }, 5, 90, White);
+	CreateWall({ 107,23,115 }, 5, 0, Purple);
+	CreateWall({ 105,23,112 }, 5, 90, Purple);
+	CreateWall({ 108,23,110 }, 5, 0, Purple);
+	CreateWall({ 110,23,113 }, 5, 90, Purple);
 
-	CreateWall({ 102,23,95 }, 5, 0, White);
-	CreateWall({ 100,23,92 }, 5, 90, White);
-	CreateWall({ 103,23,90 }, 5, 0, White);
-	CreateWall({ 105,23,93 }, 5, 90, White);
+	CreateWall({ 102,23,95 }, 5, 0, Purple);
+	CreateWall({ 100,23,92 }, 5, 90, Purple);
+	CreateWall({ 103,23,90 }, 5, 0, Purple);
+	CreateWall({ 105,23,93 }, 5, 90, Purple);
 
-	CreateWall({ 92,23,110 }, 5, 0, White);
-	CreateWall({ 90,23,107 }, 5, 90, White);
-	CreateWall({ 93,23,105 }, 5, 0, White);
-	CreateWall({ 95,23,108 }, 5, 90, White);
+	CreateWall({ 92,23,110 }, 5, 0, Purple);
+	CreateWall({ 90,23,107 }, 5, 90, Purple);
+	CreateWall({ 93,23,105 }, 5, 0, Purple);
+	CreateWall({ 95,23,108 }, 5, 90, Purple);
 
-	CreateWall({ 82,23,110 }, 5, 0, White);
-	CreateWall({ 80,23,107 }, 5, 90, White);
-	CreateWall({ 83,23,105 }, 5, 0, White);
-	CreateWall({ 85,23,108 }, 5, 90, White);
+	CreateWall({ 82,23,110 }, 5, 0, Purple);
+	CreateWall({ 80,23,107 }, 5, 90, Purple);
+	CreateWall({ 83,23,105 }, 5, 0, Purple);
+	CreateWall({ 85,23,108 }, 5, 90, Purple);
 
-	CreateWall({ 112,23,90 }, 5, 0, White);
-	CreateWall({ 110,23,87 }, 5, 90, White);
-	CreateWall({ 113,23,85 }, 5, 0, White);
-	CreateWall({ 115,23,88 }, 5, 90, White);
+	CreateWall({ 112,23,90 }, 5, 0, Purple);
+	CreateWall({ 110,23,87 }, 5, 90, Purple);
+	CreateWall({ 113,23,85 }, 5, 0, Purple);
+	CreateWall({ 115,23,88 }, 5, 90, Purple);
 
-	CreateWall({ 116,23,50 }, 5, 0, White);
-	CreateWall({ 114,23,47 }, 5, 90, White);
-	CreateWall({ 117,23,45 }, 5, 0, White);
-	CreateWall({ 119,23,48 }, 5, 90, White);
+	CreateWall({ 116,23,50 }, 5, 0, Purple);
+	CreateWall({ 114,23,47 }, 5, 90, Purple);
+	CreateWall({ 117,23,45 }, 5, 0, Purple);
+	CreateWall({ 119,23,48 }, 5, 90, Purple);
 
-	CreateWall({ 92,23,90 }, 5, 0, White);
-	CreateWall({ 90,23,87 }, 5, 90, White);
-	CreateWall({ 93,23,85 }, 5, 0, White);
-	CreateWall({ 95,23,88 }, 5, 90, White);
+	CreateWall({ 92,23,90 }, 5, 0, Purple);
+	CreateWall({ 90,23,87 }, 5, 90, Purple);
+	CreateWall({ 93,23,85 }, 5, 0, Purple);
+	CreateWall({ 95,23,88 }, 5, 90, Purple);
 	
-	CreateWall({ 102,23,80 }, 5, 0, White);
-	CreateWall({ 100,23,77 }, 5, 90, White);
-	CreateWall({ 103,23,75 }, 5, 0, White);
-	CreateWall({ 105,23,78 }, 5, 90, White);
+	CreateWall({ 102,23,80 }, 5, 0, Purple);
+	CreateWall({ 100,23,77 }, 5, 90, Purple);
+	CreateWall({ 103,23,75 }, 5, 0, Purple);
+	CreateWall({ 105,23,78 }, 5, 90, Purple);
 
-	CreateWall({ 97,23,70 }, 5, 0, White);
-	CreateWall({ 95,23,67 }, 5, 90, White);
-	CreateWall({ 98,23,65 }, 5, 0, White);
-	CreateWall({ 100,23,68 }, 5, 90, White);
+	CreateWall({ 97,23,70 }, 5, 0, Purple);
+	CreateWall({ 95,23,67 }, 5, 90, Purple);
+	CreateWall({ 98,23,65 }, 5, 0, Purple);
+	CreateWall({ 100,23,68 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,100 }, 5, 0, White);
-	CreateWall({ 85,23,97 }, 5, 90, White);
-	CreateWall({ 88,23,95 }, 5, 0, White);
-	CreateWall({ 90,23,98 }, 5, 90, White);
+	CreateWall({ 87,23,100 }, 5, 0, Purple);
+	CreateWall({ 85,23,97 }, 5, 90, Purple);
+	CreateWall({ 88,23,95 }, 5, 0, Purple);
+	CreateWall({ 90,23,98 }, 5, 90, Purple);
 
-	CreateWall({ 77,23,75 }, 5, 0, White);
-	CreateWall({ 75,23,72 }, 5, 90, White);
-	CreateWall({ 78,23,70 }, 5, 0, White);
-	CreateWall({ 80,23,73 }, 5, 90, White);
+	CreateWall({ 77,23,75 }, 5, 0, Purple);
+	CreateWall({ 75,23,72 }, 5, 90, Purple);
+	CreateWall({ 78,23,70 }, 5, 0, Purple);
+	CreateWall({ 80,23,73 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,80 }, 5, 0, White);
-	CreateWall({ 85,23,77 }, 5, 90, White);
-	CreateWall({ 88,23,75 }, 5, 0, White);
-	CreateWall({ 90,23,78 }, 5, 90, White);
+	CreateWall({ 87,23,80 }, 5, 0, Purple);
+	CreateWall({ 85,23,77 }, 5, 90, Purple);
+	CreateWall({ 88,23,75 }, 5, 0, Purple);
+	CreateWall({ 90,23,78 }, 5, 90, Purple);
 
-	CreateWall({ 107,23,65 }, 5, 0, White);
-	CreateWall({ 105,23,62 }, 5, 90, White);
-	CreateWall({ 108,23,60 }, 5, 0, White);
-	CreateWall({ 110,23,63 }, 5, 90, White);
+	CreateWall({ 107,23,65 }, 5, 0, Purple);
+	CreateWall({ 105,23,62 }, 5, 90, Purple);
+	CreateWall({ 108,23,60 }, 5, 0, Purple);
+	CreateWall({ 110,23,63 }, 5, 90, Purple);
 
-	CreateWall({ 102,23,45 }, 5, 0, White);
-	CreateWall({ 100,23,42 }, 5, 90, White);
-	CreateWall({ 103,23,40 }, 5, 0, White);
-	CreateWall({ 105,23,43 }, 5, 90, White);
+	CreateWall({ 102,23,45 }, 5, 0, Purple);
+	CreateWall({ 100,23,42 }, 5, 90, Purple);
+	CreateWall({ 103,23,40 }, 5, 0, Purple);
+	CreateWall({ 105,23,43 }, 5, 90, Purple);
 
-	CreateWall({ 92,23,60 }, 5, 0, White);
-	CreateWall({ 90,23,57 }, 5, 90, White);
-	CreateWall({ 93,23,55 }, 5, 0, White);
-	CreateWall({ 95,23,58 }, 5, 90, White);
+	CreateWall({ 92,23,60 }, 5, 0, Purple);
+	CreateWall({ 90,23,57 }, 5, 90, Purple);
+	CreateWall({ 93,23,55 }, 5, 0, Purple);
+	CreateWall({ 95,23,58 }, 5, 90, Purple);
 
-	CreateWall({ 82,23,60 }, 5, 0, White);
-	CreateWall({ 80,23,57 }, 5, 90, White);
-	CreateWall({ 83,23,55 }, 5, 0, White);
-	CreateWall({ 85,23,58 }, 5, 90, White);
+	CreateWall({ 82,23,60 }, 5, 0, Purple);
+	CreateWall({ 80,23,57 }, 5, 90, Purple);
+	CreateWall({ 83,23,55 }, 5, 0, Purple);
+	CreateWall({ 85,23,58 }, 5, 90, Purple);
 
-	CreateWall({ 112,23,40 }, 5, 0, White);
-	CreateWall({ 110,23,37 }, 5, 90, White);
-	CreateWall({ 113,23,35 }, 5, 0, White);
-	CreateWall({ 115,23,38 }, 5, 90, White);
+	CreateWall({ 112,23,40 }, 5, 0, Purple);
+	CreateWall({ 110,23,37 }, 5, 90, Purple);
+	CreateWall({ 113,23,35 }, 5, 0, Purple);
+	CreateWall({ 115,23,38 }, 5, 90, Purple);
 
-	CreateWall({ 92,23,40 }, 5, 0, White);
-	CreateWall({ 90,23,37 }, 5, 90, White);
-	CreateWall({ 93,23,35 }, 5, 0, White);
-	CreateWall({ 95,23,38 }, 5, 90, White);
+	CreateWall({ 92,23,40 }, 5, 0, Purple);
+	CreateWall({ 90,23,37 }, 5, 90, Purple);
+	CreateWall({ 93,23,35 }, 5, 0, Purple);
+	CreateWall({ 95,23,38 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,50 }, 5, 0, White);
-	CreateWall({ 85,23,47 }, 5, 90, White);
-	CreateWall({ 88,23,45 }, 5, 0, White);
-	CreateWall({ 90,23,48 }, 5, 90, White);
+	CreateWall({ 87,23,50 }, 5, 0, Purple);
+	CreateWall({ 85,23,47 }, 5, 90, Purple);
+	CreateWall({ 88,23,45 }, 5, 0, Purple);
+	CreateWall({ 90,23,48 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,30 }, 5, 0, White);
-	CreateWall({ 85,23,27 }, 5, 90, White);
-	CreateWall({ 88,23,25 }, 5, 0, White);
-	CreateWall({ 90,23,28 }, 5, 90, White);
+	CreateWall({ 87,23,30 }, 5, 0, Purple);
+	CreateWall({ 85,23,27 }, 5, 90, Purple);
+	CreateWall({ 88,23,25 }, 5, 0, Purple);
+	CreateWall({ 90,23,28 }, 5, 90, Purple);
 
-	CreateCurve({ 0,20,-10 }, 3, 180, 360, 50, White);
-	CreateTrack({ 100,20,5 }, 35, 0.0f, White, 12.0f);
+	CreateCurve({ 0,20,-10 }, 3, 180, 360, 50, Purple);
+	CreateTrack({ 100,20,5 }, 35, 0.0f, Purple, 12.0f);
 
-	checkTest.size = { 12, 12, 1 };
-	testp = App->physics->AddBody(checkTest, 0);
-	testp->SetPos(0, 21, 20);
-	testp->GetTransform(&checkTest.transform);
-	testp->SetAsSensor(true);
-	testp->collision_listeners.add(this);
+	check1.size = { 12, 12, 1 };
+	check1p = App->physics->AddBody(check1, 0);
+	check1p->SetPos(0, 21, 20);
+	check1p->GetTransform(&check1.transform);
+	check1p->SetAsSensor(true);
+	check1p->collision_listeners.add(this);
 
+	check2.size = { 12, 12, 1 };
+	check2p = App->physics->AddBody(check2, 0);
+	check2p->SetPos(-100, 21, 120);
+	check2p->GetTransform(&check2.transform);
+	check2p->SetAsSensor(true);
+	check2p->collision_listeners.add(this);
+	
+	check3.size = { 1, 12, 12 };
+	check3p = App->physics->AddBody(check3, 0);
+	check3p->SetPos(-150, 25, 182);
+	check3p->GetTransform(&check3.transform);
+	check3p->SetAsSensor(true);
+	check3p->collision_listeners.add(this);
+	
+	check4.size = { 12, 12, 1 };
+	check4p = App->physics->AddBody(check4, 0);
+	check4p->SetPos(100, 21, 21);
+	check4p->GetTransform(&check4.transform);
+	check4p->SetAsSensor(true);
+	check4p->collision_listeners.add(this);
+
+	check1Passed = false;
+	check2Passed = false;
+	check3Passed = false;
+	check4Passed = false;
+
+	death.size = { 1000, 2, 1000 };
+	deathP = App->physics->AddBody(death, 0);
+	deathP->SetPos(0, 1, 100);
+	deathP->GetTransform(&death.transform);
+	deathP->SetAsSensor(true);
+	deathP->collision_listeners.add(this);
+
+	checkpointCount = 0;
 	startMusic = true;
 	gameMusic = true;
 	finishMusic = true;
@@ -231,7 +267,7 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
-	p.color = White;
+	p.color = Black;
 	p.Render();
 
 	if (!start)
@@ -317,12 +353,57 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	if (body2 == (PhysBody3D*)App->player->vehicle)
 	{
-		if (body1 == testp)
+		if (body1 == check1p)
 		{
-			CheckpointPassed(body2);
-			body2->SetActive(false);
+			//CheckpointPassed(body2);
+			//body2->SetActive(false);
+			if (checkpointCount == 4)
+			{
+				App->player->isWon = true;
+			}
+			if (!check1Passed)
+			{
+				checkpointCount++;
+				check1Passed = true;
+			}
+		}
+
+		else if (body1 == check2p && !check2Passed)
+		{
+			//CheckpointPassed(body2);
+			//body2->SetActive(false);
 			App->player->SetCheckpointPosition();
 			App->audio->PlayFx(checkpointFx);
+			checkpointCount++;
+			check2Passed = true;
+		}
+
+		else if (body1 == check3p && !check3Passed)
+		{
+			//CheckpointPassed(body2);
+			//body2->SetActive(false);
+			App->player->SetCheckpointPosition();
+			App->audio->PlayFx(checkpointFx);
+			checkpointCount++;
+			check3Passed = true;
+		}
+
+		else if (body1 == check4p && !check4Passed)
+		{
+			//CheckpointPassed(body2);
+			//body2->SetActive(false);
+			App->player->SetCheckpointPosition();
+			App->audio->PlayFx(checkpointFx);
+			checkpointCount++;
+			check4Passed = true;
+		}
+
+		else if (body1 == deathP)
+		{
+			App->audio->PlayFx(App->player->honkFx);
+			--App->player->lives;
+			App->player->vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
+			App->player->vehicle->vehicle->getRigidBody()->setWorldTransform(App->player->checkpointTransf);
 		}
 	}
 }
