@@ -32,3 +32,4 @@ extern Color Black;
 extern Color White;
 extern Color Purple;
 extern Color DarkPurple;
+extern Color Gray;

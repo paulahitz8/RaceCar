@@ -13,7 +13,6 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 ModulePlayer::~ModulePlayer()
 {}
 
-// Load assets
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
@@ -153,10 +152,7 @@ bool ModulePlayer::Start()
 	isLose = false;
 	lives = 5;
 	time = 0;
-	accel = -1;
 
-	accelFx = App->audio->LoadFx("Assets/Audio/Fx/engine.wav");
-	brakeFx = App->audio->LoadFx("Assets/Audio/Fx/brake.wav");
 	honkFx = App->audio->LoadFx("Assets/Audio/Fx/honk.wav");
 	
 	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
@@ -242,7 +238,6 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
-
 	vehicle->Render();
 
 	if (!isWon && !isLose)
@@ -260,12 +255,14 @@ update_status ModulePlayer::Update(float dt)
 			App->window->SetTitle(title);
 		}
 	}
+
 	if (isWon)
 	{
 		char title[80];
 		sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   Congrats, you won! :D", vehicle->GetKmh(), time - 8, lives);
 		App->window->SetTitle(title);
 	}
+
 	if (isLose)
 	{
 		vehicle->SetPos(0, 21, 10);

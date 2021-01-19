@@ -28,18 +28,15 @@ public:
 	float brake;
 	Timer timer;
 
-	int lives = 5;
 	mat4x4 transform;
 
-	int accel;
-	int brakeFx;
-	int accelFx;
+	int lives = 5;
 	int honkFx;
+	int time = 0;
 
 	bool isWon;
 	bool isLose;
 
-	int time = 0;
 	btTransform checkpointTransf;
 
 	vec3 GetPos();

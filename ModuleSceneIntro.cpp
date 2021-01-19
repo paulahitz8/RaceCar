@@ -16,7 +16,6 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 ModuleSceneIntro::~ModuleSceneIntro()
 {}
 
-// Load assets
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
@@ -198,12 +197,63 @@ bool ModuleSceneIntro::Start()
 	check1p->SetAsSensor(true);
 	check1p->collision_listeners.add(this);
 
+	check1Box.size = { 15, 1, 1 };
+	check1Box.color = DarkPurple;
+	check1Box.SetPos(0, 27, 20);
+	trackArray.cubeArray.PushBack(check1Box);
+	trackArray.physArray.PushBack(App->physics->AddBody(check1Box, 0.0f));
+
+	check1RStand.size = { 1, 7, 1 };
+	check1RStand.color = Purple;
+	check1RStand.SetPos(-5.5f, 23, 20);
+	trackArray.cubeArray.PushBack(check1RStand);
+	trackArray.physArray.PushBack(App->physics->AddBody(check1RStand, 0.0f));
+
+	check1LStand.size = { 1, 7, 1 };
+	check1LStand.color = Purple;
+	check1LStand.SetPos(5.5f, 23, 20);
+	trackArray.cubeArray.PushBack(check1LStand);
+	trackArray.physArray.PushBack(App->physics->AddBody(check1LStand, 0.0f));
+
 	check2.size = { 12, 12, 1 };
 	check2p = App->physics->AddBody(check2, 0);
 	check2p->SetPos(-100, 21, 120);
 	check2p->GetTransform(&check2.transform);
 	check2p->SetAsSensor(true);
 	check2p->collision_listeners.add(this);
+
+
+	check2Box.size = { 1, 1, 1 };
+	check2Box.color = Gray;
+	check2Box.SetPos(-94.5f, 24, 120);
+	trackArray.cubeArray.PushBack(check2Box);
+	trackArray.physArray.PushBack(App->physics->AddBody(check2Box, 0.0f));
+
+	check2BoxSike.size = { 1.1f, 1.1f, 1.1f };
+	check2BoxSike.color = DarkPurple;
+	check2BoxSike.SetPos(-94.5f, 24, 120);
+
+	check2Stand.size = { 1, 4, 1 };
+	check2Stand.color = Purple;
+	check2Stand.SetPos(-94.5f, 22, 120);
+	trackArray.cubeArray.PushBack(check2Stand);
+	trackArray.physArray.PushBack(App->physics->AddBody(check2Stand, 0.0f));
+
+	check2Boxiapb.size = { 1, 1, 1 };
+	check2Boxiapb.color = Gray;
+	check2Boxiapb.SetPos(-105.5f, 24, 120);
+	trackArray.cubeArray.PushBack(check2Boxiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check2Boxiapb, 0.0f));
+
+	check2BoxSikeiapb.size = { 1.1f, 1.1f, 1.1f };
+	check2BoxSikeiapb.color = DarkPurple;
+	check2BoxSikeiapb.SetPos(-105.5f, 24, 120);
+
+	check2Standiapb.size = { 1, 4, 1 };
+	check2Standiapb.color = Purple;
+	check2Standiapb.SetPos(-105.5f, 22, 120);
+	trackArray.cubeArray.PushBack(check2Standiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check2Standiapb, 0.0f));
 	
 	check3.size = { 1, 12, 12 };
 	check3p = App->physics->AddBody(check3, 0);
@@ -211,6 +261,38 @@ bool ModuleSceneIntro::Start()
 	check3p->GetTransform(&check3.transform);
 	check3p->SetAsSensor(true);
 	check3p->collision_listeners.add(this);
+
+	check3Box.size = { 1, 1, 1 };
+	check3Box.color = Gray;
+	check3Box.SetPos(-150, 28, 176.5);
+	trackArray.cubeArray.PushBack(check3Box);
+	trackArray.physArray.PushBack(App->physics->AddBody(check3Box, 0.0f));
+
+	check3BoxSike.size = { 1.1f, 1.1f, 1.1f };
+	check3BoxSike.color = DarkPurple;
+	check3BoxSike.SetPos(-150, 28, 176.5);
+
+	check3Stand.size = { 1, 4, 1 };
+	check3Stand.color = Purple;
+	check3Stand.SetPos(-150, 26, 176.5);
+	trackArray.cubeArray.PushBack(check3Stand);
+	trackArray.physArray.PushBack(App->physics->AddBody(check3Stand, 0.0f));
+
+	check3Boxiapb.size = { 1, 1, 1 };
+	check3Boxiapb.color = Gray;
+	check3Boxiapb.SetPos(-150, 28, 187.5f);
+	trackArray.cubeArray.PushBack(check3Boxiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check3Boxiapb, 0.0f));
+
+	check3BoxSikeiapb.size = { 1.1f, 1.1f, 1.1f };
+	check3BoxSikeiapb.color = DarkPurple;
+	check3BoxSikeiapb.SetPos(-150, 28, 187.5f);
+
+	check3Standiapb.size = { 1, 4, 1 };
+	check3Standiapb.color = Purple;
+	check3Standiapb.SetPos(-150, 26, 187.5f);
+	trackArray.cubeArray.PushBack(check3Standiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check3Standiapb, 0.0f));
 	
 	check4.size = { 12, 12, 1 };
 	check4p = App->physics->AddBody(check4, 0);
@@ -218,6 +300,38 @@ bool ModuleSceneIntro::Start()
 	check4p->GetTransform(&check4.transform);
 	check4p->SetAsSensor(true);
 	check4p->collision_listeners.add(this);
+
+	check4Box.size = { 1, 1, 1 };
+	check4Box.color = Gray;
+	check4Box.SetPos(105.5f, 24, 21);
+	trackArray.cubeArray.PushBack(check4Box);
+	trackArray.physArray.PushBack(App->physics->AddBody(check4Box, 0.0f));
+
+	check4BoxSike.size = { 1.1f, 1.1f, 1.1f };
+	check4BoxSike.color = DarkPurple;
+	check4BoxSike.SetPos(105.5f, 24, 21);
+
+	check4Stand.size = { 1, 4, 1 };
+	check4Stand.color = Purple;
+	check4Stand.SetPos(105.5f, 22, 21);
+	trackArray.cubeArray.PushBack(check4Stand);
+	trackArray.physArray.PushBack(App->physics->AddBody(check4Stand, 0.0f));
+
+	check4Boxiapb.size = { 1, 1, 1 };
+	check4Boxiapb.color = Gray;
+	check4Boxiapb.SetPos(94.5f, 24, 21);
+	trackArray.cubeArray.PushBack(check4Boxiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check4Boxiapb, 0.0f));
+
+	check4BoxSikeiapb.size = { 1.1f, 1.1f, 1.1f };
+	check4BoxSikeiapb.color = DarkPurple;
+	check4BoxSikeiapb.SetPos(94.5f, 24, 21);
+
+	check4Standiapb.size = { 1, 4, 1 };
+	check4Standiapb.color = Purple;
+	check4Standiapb.SetPos(94.5f, 22, 21);
+	trackArray.cubeArray.PushBack(check4Standiapb);
+	trackArray.physArray.PushBack(App->physics->AddBody(check4Standiapb, 0.0f));
 
 	check1Passed = false;
 	check2Passed = false;
@@ -255,7 +369,6 @@ bool ModuleSceneIntro::Start()
 	return ret;
 }
 
-// Load assets
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
@@ -263,7 +376,6 @@ bool ModuleSceneIntro::CleanUp()
 	return true;
 }
 
-// Update
 update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
@@ -278,18 +390,22 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->audio->PlayFx(startFx, 0);
 			startMusic = false;
 		}
+
 		if (timerFx > 200 && timerFx < 202)
 		{
 			App->audio->PlayFx(threeFx, 0);
 		}
+
 		if (timerFx > 280 && timerFx < 282)
 		{
 			App->audio->PlayFx(twoFx, 0);
 		}
+
 		if (timerFx > 360 && timerFx < 362)
 		{
 			App->audio->PlayFx(oneFx, 0);
 		}
+
 		if (timerFx > 440 && timerFx < 442)
 		{
 			App->audio->PlayFx(goFx, 0);
@@ -315,6 +431,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (App->player->isLose)
 	{
 		if (timerMusic < 2) App->audio->StopFx(-1);
+
 		if (finishMusic)
 		{
 			if (timerMusic > 10)
@@ -329,6 +446,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (App->player->isWon)
 	{
 		if(timerMusic < 2) App->audio->StopFx(-1);
+
 		if (finishMusic)
 		{
 			if (timerMusic > 10)
@@ -346,6 +464,24 @@ update_status ModuleSceneIntro::Update(float dt)
 		trackArray.cubeArray[i].Render();
 	}
 
+	if (check2Passed)
+	{
+		check2BoxSike.Render();
+		check2BoxSikeiapb.Render();
+	}
+
+	if (check3Passed)
+	{
+		check3BoxSike.Render();
+		check3BoxSikeiapb.Render();
+	}
+
+	if (check4Passed)
+	{
+		check4BoxSike.Render();
+		check4BoxSikeiapb.Render();
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -355,8 +491,6 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		if (body1 == check1p)
 		{
-			//CheckpointPassed(body2);
-			//body2->SetActive(false);
 			if (checkpointCount == 4)
 			{
 				App->player->isWon = true;
@@ -367,37 +501,27 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 				check1Passed = true;
 			}
 		}
-
 		else if (body1 == check2p && !check2Passed)
 		{
-			//CheckpointPassed(body2);
-			//body2->SetActive(false);
 			App->player->SetCheckpointPosition();
 			App->audio->PlayFx(checkpointFx);
 			checkpointCount++;
 			check2Passed = true;
 		}
-
 		else if (body1 == check3p && !check3Passed)
 		{
-			//CheckpointPassed(body2);
-			//body2->SetActive(false);
 			App->player->SetCheckpointPosition();
 			App->audio->PlayFx(checkpointFx);
 			checkpointCount++;
 			check3Passed = true;
 		}
-
 		else if (body1 == check4p && !check4Passed)
 		{
-			//CheckpointPassed(body2);
-			//body2->SetActive(false);
 			App->player->SetCheckpointPosition();
 			App->audio->PlayFx(checkpointFx);
 			checkpointCount++;
 			check4Passed = true;
 		}
-
 		else if (body1 == deathP)
 		{
 			App->audio->PlayFx(App->player->honkFx);
@@ -417,79 +541,41 @@ void ModuleSceneIntro::CreateCurve(vec3 curvePos, float curveLength, float curve
 	float pi = 3.141592f;
 	float initialPosX = curvePos.x;
 	float initialPosZ = curvePos.z;
-	if (curveInitialAngle < curveFinalAngle)
+	for (float angle = curveInitialAngle; angle < curveFinalAngle; angle += 1.0f)
 	{
-		for (float angle = curveInitialAngle; angle < curveFinalAngle; angle += 1.0f)
+		curve.SetRotation(-angle, { 0.0f, 1.0f, 0.0f });
+		angle = angle * (pi / 180.0f);
+		curve.SetPos(curvePos.x, curvePos.y, curvePos.z);
+		trackArray.cubeArray.PushBack(curve);
+		trackArray.physArray.PushBack(App->physics->AddBody(curve, 0.0f));
+		if (curveInitialAngle == 0)
 		{
-			curve.SetRotation(-angle, { 0.0f, 1.0f, 0.0f });
-			angle = angle * (pi / 180.0f);
-			curve.SetPos(curvePos.x, curvePos.y, curvePos.z);
-			trackArray.cubeArray.PushBack(curve);
-			trackArray.physArray.PushBack(App->physics->AddBody(curve, 0.0f));
-			if (curveInitialAngle == 0)
-			{
-				curvePos.z = radius * sin(angle) + initialPosZ;
-				curvePos.x = -(radius - (radius * cos(angle))) + initialPosX;
-			}
-			else if (curveInitialAngle == 90)
-			{
-				curvePos.z = -(radius - (radius * sin(angle))) + initialPosZ;
-				curvePos.x = (radius * cos(angle)) + initialPosX;
-			}
-			else if (curveInitialAngle == 180)
-			{
-				curvePos.z = (radius * sin(angle)) + initialPosZ;
-				curvePos.x = (radius + (radius * cos(angle))) + initialPosX;
-			}
-			else if (curveInitialAngle == 270)
-			{
-				curvePos.z = (radius + (radius * sin(angle))) + initialPosZ;
-				curvePos.x = (radius * cos(angle)) + initialPosX;
-			}
-			angle = angle * (180.0f / pi);
+			curvePos.z = radius * sin(angle) + initialPosZ;
+			curvePos.x = -(radius - (radius * cos(angle))) + initialPosX;
 		}
+		else if (curveInitialAngle == 90)
+		{
+			curvePos.z = -(radius - (radius * sin(angle))) + initialPosZ;
+			curvePos.x = (radius * cos(angle)) + initialPosX;
+		}
+		else if (curveInitialAngle == 180)
+		{
+			curvePos.z = (radius * sin(angle)) + initialPosZ;
+			curvePos.x = (radius + (radius * cos(angle))) + initialPosX;
+		}
+		else if (curveInitialAngle == 270)
+		{
+			curvePos.z = (radius + (radius * sin(angle))) + initialPosZ;
+			curvePos.x = (radius * cos(angle)) + initialPosX;
+		}
+		angle = angle * (180.0f / pi);
 	}
-	/*else if (curveInitialAngle > curveFinalAngle)
-	{
-		for (int angle = curveInitialAngle; angle > curveFinalAngle; angle -= 5)
-		{
-			curve.SetRotation(-angle, { 0.0f, 1.0f, 0.0f });
-			angle = angle * (pi / 180.0f);
-			curve.SetPos(curvePos.x, curvePos.y, curvePos.z);
-			trackArray.cubeArray.PushBack(curve);
-			trackArray.physArray.PushBack(App->physics->AddBody(curve, 0.0f));
-			if (curveInitialAngle == 0)
-			{
-				curvePos.z = radius * sin(angle) + initialPosZ;
-				curvePos.x = -(radius - (radius * cos(angle))) + initialPosX;
-			}
-			else if (curveInitialAngle == 90)
-			{
-				curvePos.z = -(radius - (radius * sin(angle))) + initialPosZ;
-				curvePos.x = (radius * cos(angle)) + initialPosX;
-			}
-			else if (curveInitialAngle == 180)
-			{
-				curvePos.z = (radius * sin(angle)) + initialPosZ;
-				curvePos.x = (radius + (radius * cos(angle))) + initialPosX;
-			}
-			else if (curveInitialAngle == 270)
-			{
-				curvePos.z = (radius + (radius * sin(angle))) + initialPosZ;
-				curvePos.x = (radius * cos(angle)) + initialPosX;
-			}
-			angle = angle * (180.0f / pi);
-		}
-	}*/
 }
 
 void ModuleSceneIntro::CreateWall(vec3 wallPos, float wallLength, float wallAngle, Color wallColor)
 {
-	vec3 size = {};
 	Cube wall;
-
-	size = { wallLength, 6.0f, 1.0f };
-
+	vec3 size = { wallLength, 6.0f, 1.0f };
 	wall.size = size;
 	wall.color = wallColor;
 	wall.SetRotation(-wallAngle, { 0.0f, 1.0f, 0.0f });
@@ -527,10 +613,7 @@ void ModuleSceneIntro::CreateRamp(vec3 rampPos, float rampLength, float rampAngl
 void ModuleSceneIntro::CreateTrack(vec3 trackPos, float trackLength, float trackAngle, Color trackColor, float trackWidth)
 {
 	vec3 size = {};
-
 	Cube platform;
-	//PhysBody3D* shapeCol;
-
 	if (trackAngle == 0.0f)
 	{
 		size = { trackWidth, 1.0f, trackLength };
@@ -541,12 +624,7 @@ void ModuleSceneIntro::CreateTrack(vec3 trackPos, float trackLength, float track
 		platform.SetPos(trackPos.x, trackPos.y, trackPos.z + 3);
 		trackArray.cubeArray.PushBack(platform);
 		trackArray.physArray.PushBack(App->physics->AddBody(platform, 0.0f));
-
-		//shape.SetPos(trackPos.x - trackDist, trackPos.y + 3, trackPos.z + 3);
-		//trackArray.cubeArray.PushBack(shape);
-		//trackArray.physArray.PushBack(App->physics->AddBody(shape, 0.0f));
 	}
-
 	else if (trackAngle == 1.0f)
 	{
 		size = { trackLength, 1.0f, trackWidth };
@@ -557,55 +635,5 @@ void ModuleSceneIntro::CreateTrack(vec3 trackPos, float trackLength, float track
 		platform.SetPos(trackPos.x + 3, trackPos.y, trackPos.z);
 		trackArray.cubeArray.PushBack(platform);
 		trackArray.physArray.PushBack(App->physics->AddBody(platform, 0.0f));
-
-	/*	shape.SetPos(trackPos.x + 3, trackPos.y + 3, trackPos.z - trackDist);
-		trackArray.cubeArray.PushBack(shape);
-		trackArray.physArray.PushBack(App->physics->AddBody(shape, 0.0f));*/
-	}
-}
-
-void ModuleSceneIntro::CreateCheckpoint(vec3 checkpointPos, bool rotate, PhysBody3D::Tag type)
-{
-	Cube checkpointObj;
-	Cube greenCube;
-	vec3 size = {};
-
-	if (rotate)
-	{
-		size = {12, 1, 1};
-	}
-	else
-	{
-		size = { 1, 1, 12 };
-	}
-
-	checkpointObj.size = size;
-	greenCube.size = size;
-	checkpointObj.SetPos(checkpointPos.x, checkpointPos.y + 1, checkpointPos.z);
-	checkpointCube.PushBack(checkpointObj);
-	PhysBody3D* sensor = App->physics->AddBody(checkpointObj, 0);
-	sensor->SetAsSensor(true);
-	sensor->SetTag(type);
-	checkpointPhys.PushBack(sensor);
-
-	if (type == PhysBody3D::Tag::CHECKPOINT)
-		greenCube.color.Set(0, 255, 0);
-	else
-		greenCube.color.Set(0, 255, 255);
-
-	greenCube.SetPos(checkpointPos.x, checkpointPos.y + 4, checkpointPos.z);
-	trackArray.cubeArray.PushBack(greenCube);
-	trackArray.physArray.PushBack(App->physics->AddBody(greenCube, 0.0f));
-}
-
-void ModuleSceneIntro::CheckpointPassed(PhysBody3D* checkpoint_body)
-{
-	for (uint i = 0; i < checkpointPhys.Count(); i++)
-	{
-		if (checkpointPhys[i] == checkpoint_body)
-		{
-			checkpointCube[i].active = false;
-			break;
-		}
 	}
 }

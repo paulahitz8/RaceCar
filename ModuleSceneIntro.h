@@ -19,6 +19,7 @@ struct trackArray
 class ModuleSceneIntro : public Module
 {
 public:
+
 	ModuleSceneIntro(Application* app, bool start_enabled = true);
 	~ModuleSceneIntro();
 
@@ -27,14 +28,11 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
-	void Timer();
 
 	void CreateCurve(vec3 curvePos, float curveLength, float curveInitialAngle, float curveFinalAngle, float radius, Color curveColor);
 	void CreateRamp(vec3 rampPos, float rampLength, float rampAngle, float rampOrientation, Color rampColor);
 	void CreateTrack(vec3 trackPos, float trackLength, float trackAngle, Color trackColor, float trackWidth);
 	void CreateWall(vec3 wallPos, float wallLength, float wallAngle, Color wallColor);
-	void CreateCheckpoint(vec3 checkpointPos, bool rotate, PhysBody3D::Tag type);
-	void CheckpointPassed(PhysBody3D* checkpoint_body);
 
 public:
 	
@@ -61,12 +59,34 @@ public:
 
 	Cube check1;
 	PhysBody3D* check1p;
+	Cube check1Box;
+	Cube check1RStand;
+	Cube check1LStand;
 	Cube check2;
 	PhysBody3D* check2p;
+	Cube check2Box;
+	Cube check2BoxSike;
+	Cube check2Stand;
+	Cube check2Boxiapb;
+	Cube check2BoxSikeiapb;
+	Cube check2Standiapb;
 	Cube check3;
 	PhysBody3D* check3p;
+	Cube check3Box;
+	Cube check3BoxSike;
+	Cube check3Stand;
+	Cube check3Boxiapb;
+	Cube check3BoxSikeiapb;
+	Cube check3Standiapb;
 	Cube check4;
 	PhysBody3D* check4p;
+	Cube check4Box;
+	Cube check4BoxSike;
+	Cube check4Stand;
+	Cube check4Boxiapb;
+	Cube check4BoxSikeiapb;
+	Cube check4Standiapb;
+
 	bool check1Passed;
 	bool check2Passed;
 	bool check3Passed;
@@ -79,8 +99,6 @@ public:
 
 	trackArray trackArray;
 	p2DynArray<Primitive*> arrayTrack;
-
-	// ------------
 
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
