@@ -11,15 +11,14 @@ of beating the highscore!
 * **LEFT** - Move left
 * **RIGHT** - Move right
 * **DOWN** - Brake or move backward
-* **ENTER** - Respawn
+* **ENTER** - Respawn at last checkpoint
 
 ##### Debug functionality:
 * **F1** - Debug view
-* **ENTER** - Respawn at last checkpoint
 * **F2** - Free Camera
 * **N** - Automatic win
 * **M** - Automatic lose
-
+* **H** - Honk
 
 ## Developers
 * **Paula Hitz** -  https://github.com/paulahitz8
