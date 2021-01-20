@@ -156,6 +156,7 @@ bool ModulePlayer::Start()
 	honkFx = App->audio->LoadFx("Assets/Audio/Fx/honk.wav");
 	
 	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
+	turnTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
 
 	return true;
 }
@@ -174,7 +175,10 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
-	time = timer.Read() / 1000;
+	if (!isWon && !isLose)
+	{
+		time = timer.Read() / 1000;
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
 	{
@@ -222,11 +226,18 @@ update_status ModulePlayer::Update(float dt)
 				isLose = true;
 			}
 
-			if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+			if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 			{
 				--lives;
 				vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
 				vehicle->vehicle->getRigidBody()->setWorldTransform(checkpointTransf);
+			}
+
+			if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+			{
+				App->player->SetTurnPosition();
+				vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
+				vehicle->vehicle->getRigidBody()->setWorldTransform(turnTransf);
 			}
 		}
 		else
@@ -244,13 +255,13 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (time > 8)
 		{
-			char title[80];
-			sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   GOOOO!!! ", vehicle->GetKmh(), time - 8, lives);
+			char title[150];
+			sprintf_s(title, "%0.1f Km/h    |   Time: %ds    |   Lives = %d    |   GOOOO!!! ", abs(vehicle->GetKmh()), time - 8, lives);
 			App->window->SetTitle(title);
 		}
 		else
 		{
-			char title[80];
+			char title[150];
 			sprintf_s(title, "%d Km/h    |   Time: %ds    |   Lives = %d    |   Try to win ASAP!", 0, 0, lives);
 			App->window->SetTitle(title);
 		}
@@ -258,18 +269,28 @@ update_status ModulePlayer::Update(float dt)
 
 	if (isWon)
 	{
-		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   Congrats, you won! :D", vehicle->GetKmh(), time - 8, lives);
+		turn = acceleration = brake = 0.0f;
+		char title[150];
+		sprintf_s(title, "%0.1fkm/h    |   Time: %ds    |   Lives = %d    |   Congrats, you won! :D", abs(vehicle->GetKmh()), time - 8, lives);
 		App->window->SetTitle(title);
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			App->audio->StopFx(-1);
+			RestartGame();
+		}
 	}
 
 	if (isLose)
 	{
-		vehicle->SetPos(0, 21, 10);
-
-		char title[80];
-		sprintf_s(title, "%.1f Km/h    |   Time: %ds    |   Lives = %d    |   Oh no... you lost... :(", vehicle->GetKmh(), time - 8, 0);
+		turn = acceleration = brake = 0.0f;
+		char title[150];
+		sprintf_s(title, "%0.1fkm/h    |   Time: %ds    |   Lives = %d    |   Oh no... you lost... :(", abs(vehicle->GetKmh()), time - 8, 0);
 		App->window->SetTitle(title);
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			App->audio->StopFx(-1);
+			RestartGame();
+		}
 	}
 
 	if (lives == 0)
@@ -293,4 +314,36 @@ vec3 ModulePlayer::GetPos()
 void ModulePlayer::SetCheckpointPosition()
 {
 	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
+}
+
+void ModulePlayer::SetTurnPosition()
+{
+	turnTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
+}
+
+void ModulePlayer::RestartGame()
+{
+	// Player
+	vehicle->SetPos(0, 21, 10);
+	lives = 5;
+	time = 0;
+	isWon = false;
+	isLose = false;
+	timer.Stop();
+	timer.Start();
+
+	// Scene
+	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
+	App->camera->LookAt(vec3(0, 0, 0));
+	App->scene_intro->check1Passed = false;
+	App->scene_intro->check2Passed = false;
+	App->scene_intro->check3Passed = false;
+	App->scene_intro->check4Passed = false;
+	App->scene_intro->checkpointCount = 0;
+	App->scene_intro->startMusic = true;
+	App->scene_intro->gameMusic = true;
+	App->scene_intro->finishMusic = true;
+	App->scene_intro->start = false;
+	App->scene_intro->timerFx = 0;
+	App->scene_intro->timerMusic = 0;
 }

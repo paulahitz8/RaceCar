@@ -19,6 +19,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 	void SetCheckpointPosition();
+	void SetTurnPosition();
+	void RestartGame();
 
 public:
 
@@ -38,6 +40,7 @@ public:
 	bool isLose;
 
 	btTransform checkpointTransf;
+	btTransform turnTransf;
 
 	vec3 GetPos();
 };

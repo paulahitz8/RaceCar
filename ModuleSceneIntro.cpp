@@ -222,7 +222,6 @@ bool ModuleSceneIntro::Start()
 	check2p->SetAsSensor(true);
 	check2p->collision_listeners.add(this);
 
-
 	check2Box.size = { 1, 1, 1 };
 	check2Box.color = Gray;
 	check2Box.SetPos(-94.5f, 24, 120);

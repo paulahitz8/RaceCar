@@ -6,16 +6,20 @@ This is a racing game made with OpenGL, Bullet and SDL for the class Physics II 
 The objective is to finish the circuit in the least time possible, with the intention
 of beating the highscore!
 
+Disclaimer: the UI information is displayed in the program's title bar :D
+
 #### Controls:
 * **UP** - Move forward
 * **LEFT** - Move left
 * **RIGHT** - Move right
 * **DOWN** - Brake or move backward
-* **ENTER** - Respawn at last checkpoint
+* **C** - Respawn at last checkpoint
+* **ENTER** - Restart game after winning or losing
 
 ##### Debug functionality:
 * **F1** - Debug view
 * **F2** - Free Camera
+* **F3** - Reset position if the car is flipped
 * **N** - Automatic win
 * **M** - Automatic lose
 * **H** - Honk
