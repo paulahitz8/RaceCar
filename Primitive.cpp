@@ -4,6 +4,7 @@
 #include <gl/GLU.h>
 #include "Primitive.h"
 #include "glut/glut.h"
+#include "PhysBody3D.h"
 
 #pragma comment (lib, "glut/glut32.lib")
 
@@ -15,6 +16,14 @@ Primitive::Primitive() : transform(IdentityMatrix), color(White), wire(false), a
 PrimitiveTypes Primitive::GetType() const
 {
 	return type;
+}
+
+void Primitive::Update()
+{
+	if (body != nullptr)
+	{
+		body->GetTransform(&transform);
+	}
 }
 
 // ------------------------------------------------------------

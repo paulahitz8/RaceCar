@@ -24,6 +24,7 @@ public:
 	void SetActive(bool active);
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
+	btRigidBody* GetBody();
 
 private:
 	btRigidBody* body = nullptr;

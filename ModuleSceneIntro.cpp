@@ -35,7 +35,7 @@ bool ModuleSceneIntro::Start()
 	CreateCurve({ -150,24,182 }, 3, 90, 180, 50, Purple);
 	CreateTrack({ -87,24,182 }, 130, 1.0f, Purple, 12.0f);
 	CreateRamp({ 20,30,182 }, 90, -8, 1.0f, Purple);
-	CreateRamp({ 120,65,182 }, 90, 90, 1.0f, Purple);
+	CreateRamp({ 120,46,182 }, 40, 90, 1.0f, Purple);
 	CreateTrack({ 96,20,103 }, 164, 0.0f, Purple, 48.0f);
 	CreateWall({ 120,23,103 }, 164, 90, Purple);
 	CreateWall({ 72,23,103 }, 164, 90, Purple);
@@ -45,17 +45,11 @@ bool ModuleSceneIntro::Start()
 
 	CreateWall({ 100,23,160 }, 40, 0, Purple);
 	CreateWall({ 92,23,150 }, 40, 0, Purple);
-	//CreateWall({ 100,23,150 }, 40, 0, Purple);
 
 	CreateWall({ 112,23,140 }, 5, 0, Purple);
 	CreateWall({ 110,23,137 }, 5, 90, Purple);
 	CreateWall({ 113,23,135 }, 5, 0, Purple);
 	CreateWall({ 115,23,138 }, 5, 90, Purple);
-
-	CreateWall({ 116,23,100 }, 5, 0, Purple);
-	CreateWall({ 114,23,97 }, 5, 90, Purple);
-	CreateWall({ 117,23,95 }, 5, 0, Purple);
-	CreateWall({ 119,23,98 }, 5, 90, Purple);
 
 	CreateWall({ 92,23,140 }, 5, 0, Purple);
 	CreateWall({ 90,23,137 }, 5, 90, Purple);
@@ -72,10 +66,10 @@ bool ModuleSceneIntro::Start()
 	CreateWall({ 98,23,115 }, 5, 0, Purple);
 	CreateWall({ 100,23,118 }, 5, 90, Purple);
 
-	CreateWall({ 87,23,150 }, 5, 0, Purple);
-	CreateWall({ 85,23,147 }, 5, 90, Purple);
-	CreateWall({ 88,23,145 }, 5, 0, Purple);
-	CreateWall({ 90,23,148 }, 5, 90, Purple);
+	CreateWall({ 77,23,145 }, 5, 0, Purple);
+	CreateWall({ 75,23,142 }, 5, 90, Purple);
+	CreateWall({ 78,23,140 }, 5, 0, Purple);
+	CreateWall({ 80,23,143 }, 5, 90, Purple);
 
 	CreateWall({ 77,23,125 }, 5, 0, Purple);
 	CreateWall({ 75,23,122 }, 5, 90, Purple);
@@ -87,65 +81,15 @@ bool ModuleSceneIntro::Start()
 	CreateWall({ 88,23,125 }, 5, 0, Purple);
 	CreateWall({ 90,23,128 }, 5, 90, Purple);
 
-	CreateWall({ 107,23,115 }, 5, 0, Purple);
-	CreateWall({ 105,23,112 }, 5, 90, Purple);
-	CreateWall({ 108,23,110 }, 5, 0, Purple);
-	CreateWall({ 110,23,113 }, 5, 90, Purple);
-
-	CreateWall({ 102,23,95 }, 5, 0, Purple);
-	CreateWall({ 100,23,92 }, 5, 90, Purple);
-	CreateWall({ 103,23,90 }, 5, 0, Purple);
-	CreateWall({ 105,23,93 }, 5, 90, Purple);
-
-	CreateWall({ 92,23,110 }, 5, 0, Purple);
-	CreateWall({ 90,23,107 }, 5, 90, Purple);
-	CreateWall({ 93,23,105 }, 5, 0, Purple);
-	CreateWall({ 95,23,108 }, 5, 90, Purple);
-
-	CreateWall({ 82,23,110 }, 5, 0, Purple);
-	CreateWall({ 80,23,107 }, 5, 90, Purple);
-	CreateWall({ 83,23,105 }, 5, 0, Purple);
-	CreateWall({ 85,23,108 }, 5, 90, Purple);
-
-	CreateWall({ 112,23,90 }, 5, 0, Purple);
-	CreateWall({ 110,23,87 }, 5, 90, Purple);
-	CreateWall({ 113,23,85 }, 5, 0, Purple);
-	CreateWall({ 115,23,88 }, 5, 90, Purple);
+	CreateWall({ 107,23,116 }, 5, 0, Purple);
+	CreateWall({ 105,23,113 }, 5, 90, Purple);
+	CreateWall({ 108,23,111 }, 5, 0, Purple);
+	CreateWall({ 110,23,114 }, 5, 90, Purple);
 
 	CreateWall({ 116,23,50 }, 5, 0, Purple);
 	CreateWall({ 114,23,47 }, 5, 90, Purple);
 	CreateWall({ 117,23,45 }, 5, 0, Purple);
 	CreateWall({ 119,23,48 }, 5, 90, Purple);
-
-	CreateWall({ 92,23,90 }, 5, 0, Purple);
-	CreateWall({ 90,23,87 }, 5, 90, Purple);
-	CreateWall({ 93,23,85 }, 5, 0, Purple);
-	CreateWall({ 95,23,88 }, 5, 90, Purple);
-	
-	CreateWall({ 102,23,80 }, 5, 0, Purple);
-	CreateWall({ 100,23,77 }, 5, 90, Purple);
-	CreateWall({ 103,23,75 }, 5, 0, Purple);
-	CreateWall({ 105,23,78 }, 5, 90, Purple);
-
-	CreateWall({ 97,23,70 }, 5, 0, Purple);
-	CreateWall({ 95,23,67 }, 5, 90, Purple);
-	CreateWall({ 98,23,65 }, 5, 0, Purple);
-	CreateWall({ 100,23,68 }, 5, 90, Purple);
-
-	CreateWall({ 87,23,100 }, 5, 0, Purple);
-	CreateWall({ 85,23,97 }, 5, 90, Purple);
-	CreateWall({ 88,23,95 }, 5, 0, Purple);
-	CreateWall({ 90,23,98 }, 5, 90, Purple);
-
-	CreateWall({ 77,23,75 }, 5, 0, Purple);
-	CreateWall({ 75,23,72 }, 5, 90, Purple);
-	CreateWall({ 78,23,70 }, 5, 0, Purple);
-	CreateWall({ 80,23,73 }, 5, 90, Purple);
-
-	CreateWall({ 87,23,80 }, 5, 0, Purple);
-	CreateWall({ 85,23,77 }, 5, 90, Purple);
-	CreateWall({ 88,23,75 }, 5, 0, Purple);
-	CreateWall({ 90,23,78 }, 5, 90, Purple);
 
 	CreateWall({ 107,23,65 }, 5, 0, Purple);
 	CreateWall({ 105,23,62 }, 5, 90, Purple);
@@ -344,6 +288,21 @@ bool ModuleSceneIntro::Start()
 	deathP->SetAsSensor(true);
 	deathP->collision_listeners.add(this);
 
+	cyl.radius = 2;
+	cyl.height = 6;
+	cyl.SetRotation(-90, { 0.0f, 0.0f, 1.0f });
+	cylP = App->physics->AddBody(cyl, 0);
+	cyl.SetPos(95.0f, 23, 90);
+	cyl.color = DarkPurple;
+
+	Cube* door = new Cube();
+	door->size = { 45, 1, 5 };
+	door->SetRotation(-90, { 1.0f, 0.0f, 0.0f, });
+	door->SetPos(95.5f, 20, 90);
+	door->body = App->physics->AddBody(*door, 10000000.0f);
+	doorC = door;
+	door->color = DarkPurple;
+
 	checkpointCount = 0;
 	startMusic = true;
 	gameMusic = true;
@@ -380,6 +339,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.color = Black;
 	p.Render();
+
+	doorC->Update();
+	doorC->body->GetBody()->setAngularVelocity({ 0, 2.5f, 0 });
+
 
 	if (!start)
 	{
@@ -462,6 +425,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		trackArray.cubeArray[i].Render();
 	}
+
+	cyl.Render();
+	doorC->Render();
 
 	if (check2Passed)
 	{

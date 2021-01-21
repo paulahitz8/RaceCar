@@ -95,6 +95,13 @@ public:
 	Cube death;
 	PhysBody3D* deathP;
 
+	Cylinder cyl;
+	PhysBody3D* cylP;
+	Cube doorWall;
+	PhysBody3D* doorWallP;
+
+	Cube* doorC;
+
 	int checkpointCount;
 
 	trackArray trackArray;
