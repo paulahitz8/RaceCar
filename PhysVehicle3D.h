@@ -23,7 +23,19 @@ struct Wheel
 struct VehicleInfo
 {
 	~VehicleInfo();
+
+	vec3 chassisFront_size;
+	vec3 chassisFront_offset;
 	
+	vec3 chassisBack_size;
+	vec3 chassisBack_offset;
+
+	vec3 chassisLight1_size;
+	vec3 chassisLight1_offset;
+
+	vec3 chassisLight2_size;
+	vec3 chassisLight2_offset;
+
 	vec3 chassis_size;
 	vec3 chassis_offset;
 	float mass;
