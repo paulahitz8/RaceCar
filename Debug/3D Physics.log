@@ -1,1 +1,4 @@
-﻿  3D Physics.vcxproj -> D:\Github\RaceCar\Debug\3D Physics - class5.exe
+﻿  ModulePlayer.cpp
+C:\Users\irene\Documents\GitHub\RaceCar\Primitive.h(6,17): warning C4099: 'PhysBody3D': type name first seen using 'struct' now seen using 'class'
+C:\Users\irene\Documents\GitHub\RaceCar\Module.h(4): message : see declaration of 'PhysBody3D'
+  3D Physics.vcxproj -> C:\Users\irene\Documents\GitHub\RaceCar\Debug\3D Physics - class5.exe

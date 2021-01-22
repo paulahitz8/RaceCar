@@ -79,54 +79,6 @@ bool ModulePlayer::Start()
 	car.wheels[1].brake = false;
 	car.wheels[1].steering = true;
 
-	//// MIDDLE FRONT-RIGHT ------------------------
-	//car.wheels[4].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length - (4 * wheel_radius));
-	//car.wheels[4].direction = direction;
-	//car.wheels[4].axis = axis;
-	//car.wheels[4].suspensionRestLength = suspensionRestLength;
-	//car.wheels[4].radius = wheel_radius;
-	//car.wheels[4].width = wheel_width;
-	//car.wheels[4].front = true;
-	//car.wheels[4].drive = true;
-	//car.wheels[4].brake = false;
-	//car.wheels[4].steering = true;
-
-	//// MIDDLE FRONT-LEFT ------------------------
-	//car.wheels[5].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length - (4 * wheel_radius));
-	//car.wheels[5].direction = direction;
-	//car.wheels[5].axis = axis;
-	//car.wheels[5].suspensionRestLength = suspensionRestLength;
-	//car.wheels[5].radius = wheel_radius;
-	//car.wheels[5].width = wheel_width;
-	//car.wheels[5].front = true;
-	//car.wheels[5].drive = true;
-	//car.wheels[5].brake = false;
-	//car.wheels[5].steering = true;
-
-	//// MIDDLE BACK-RIGHT ------------------------
-	//car.wheels[6].connection.Set(half_width - 0.3f * wheel_width, connection_height, -half_length + (4 * wheel_radius));
-	//car.wheels[6].direction = direction;
-	//car.wheels[6].axis = axis;
-	//car.wheels[6].suspensionRestLength = suspensionRestLength;
-	//car.wheels[6].radius = wheel_radius;
-	//car.wheels[6].width = wheel_width;
-	//car.wheels[6].front = true;
-	//car.wheels[6].drive = true;
-	//car.wheels[6].brake = false;
-	//car.wheels[6].steering = true;
-
-	//// MIDDLE BACK-LEFT ------------------------
-	//car.wheels[7].connection.Set(-half_width + 0.3f * wheel_width, connection_height, -half_length + (4 * wheel_radius));
-	//car.wheels[7].direction = direction;
-	//car.wheels[7].axis = axis;
-	//car.wheels[7].suspensionRestLength = suspensionRestLength;
-	//car.wheels[7].radius = wheel_radius;
-	//car.wheels[7].width = wheel_width;
-	//car.wheels[7].front = true;
-	//car.wheels[7].drive = true;
-	//car.wheels[7].brake = false;
-	//car.wheels[7].steering = true;
-
 	// REAR-LEFT ------------------------
 	car.wheels[2].connection.Set(half_width - 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
 	car.wheels[2].direction = direction;
@@ -165,6 +117,8 @@ bool ModulePlayer::Start()
 	
 	checkpointTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
 	turnTransf = vehicle->vehicle->getRigidBody()->getWorldTransform();
+
+	App->player->SetTurnPosition();
 
 	return true;
 }
@@ -338,8 +292,8 @@ void ModulePlayer::SetTurnPosition()
 void ModulePlayer::RestartGame()
 {
 	// Player
-	//vehicle->SetPos(0, 21, 10);
-	//sobrescribir tranfs matrix por la inicial
+	vehicle->vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
+	vehicle->vehicle->getRigidBody()->setWorldTransform(turnTransf);
 	lives = 5;
 	time = 0;
 	isWon = false;
