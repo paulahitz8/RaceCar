@@ -338,7 +338,8 @@ void ModulePlayer::SetTurnPosition()
 void ModulePlayer::RestartGame()
 {
 	// Player
-	vehicle->SetPos(0, 21, 10);
+	//vehicle->SetPos(0, 21, 10);
+	//sobrescribir tranfs matrix por la inicial
 	lives = 5;
 	time = 0;
 	isWon = false;
